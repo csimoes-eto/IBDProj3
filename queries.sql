@@ -95,7 +95,6 @@ WHERE
 -- GROUP BY
 --     sf.pr_id;
 
-
 --6
 SELECT
     DISTINCT s.st_id
@@ -116,4 +115,30 @@ WHERE
             f2.ftype = "C"
             AND sf.f_id = f2.f_id
             AND sf.st_id = s2.st_id
+    );
+
+--7 grouping tambem ainda nao sei
+;
+
+--8
+SELECT
+    DISTINCT l.lo_id,
+    l.name,
+    l.vat
+FROM
+    Landowner l,
+    Property p,
+    Stand st,
+    Species sp
+WHERE
+    st.prop_id = p.prop_id
+    AND p.lo_id = l.lo_id
+GROUP BY
+    l.lo_id
+HAVING
+    COUNT(DISTINCT st.spec_id) = (
+        SELECT
+            COUNT(*)
+        FROM
+            Species sp2
     );
