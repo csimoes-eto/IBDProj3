@@ -84,7 +84,7 @@ WHERE
 SELECT
     p.prop_id,
     CAST(SUBSTRING(f.dstart, 1, 4) AS INT) AS year,
-    SUM(sf.area_burned)
+    SUM(sf.area_burned) as "Total Burnt"
 FROM
     Property p,
     Stand st,
