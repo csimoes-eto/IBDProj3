@@ -80,20 +80,23 @@ WHERE
             StandFire sf
     );
 
---5 - ainda n sei 
--- SELECT
---     p.prop_id,
---     CAST(SUBSTRING(f.dstart, 1, 4) AS INT) AS "year",
---     SUM(sf.area_burned) AS "Tot. Area Burnt"
--- FROM
---     Property p,
---     Stand s,
---     Fire f,
---     StandFire sf
--- WHERE
---     sf.f_id = f.f_id
--- GROUP BY
---     sf.pr_id;
+--5
+SELECT
+    p.prop_id,
+    CAST(SUBSTRING(f.dstart, 1, 4) AS INT) AS year,
+    SUM(sf.area_burned)
+FROM
+    Property p,
+    Stand st,
+    Fire f,
+    StandFire sf
+WHERE
+    sf.pr_id = p.prop_id
+    AND sf.f_id = f.f_id
+    AND sf.st_id = st.st_id
+GROUP BY
+    year,
+    p.prop_id;
 
 --6
 SELECT
@@ -117,8 +120,9 @@ WHERE
             AND sf.st_id = s2.st_id
     );
 
---7 grouping tambem ainda nao sei
-;
+--7 grouping ? tambem ainda nao sei
+SELECT
+    CAST(SUBSTRING(f.dstart, 1, 4) AS INT) AS "year";
 
 --8
 SELECT
