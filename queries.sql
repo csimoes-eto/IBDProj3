@@ -121,8 +121,23 @@ WHERE
     );
 
 --7 grouping ? tambem ainda nao sei
-SELECT
-    CAST(SUBSTRING(f.dstart, 1, 4) AS INT) AS "year";
+-- SELECT
+--     CAST(SUBSTRING(f.dstart, 1, 4) AS INT) AS "year",
+--     l.name,
+--     sf.area_burned
+-- FROM
+--     Property p,
+--     Stand st,
+--     Fire f,
+--     StandFire sf,
+--     Landowner l
+-- WHERE
+--     sf.pr_id = p.prop_id
+--     AND sf.f_id = f.f_id
+--     AND sf.st_id = st.st_id
+-- GROUP BY
+--     year,
+--     l.name;
 
 --8
 SELECT
