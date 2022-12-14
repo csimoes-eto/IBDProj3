@@ -1,13 +1,11 @@
 -- IBD (2022/2023)
 -- Project 3
-
 -- Group 22
 -- Carlos Simões #60895 (8 hours)
 -- Catarina Fonseca #44961 (8 hours)
 -- Márcia Vital #59488 (8 hours)
 -- Rafaela Lopes #59493 (8 hours)
 -----------------------------------------------------------------
-
 -- 1 | VAT, phone, address and name of landowners with age between 18 and 30 years and who own properties with an area greater than 2000m2.
 SELECT
     l.vat,
@@ -116,10 +114,10 @@ FROM
     INNER JOIN Property p ON p.prop_id = sf.pr_id
     INNER JOIN Landowner l ON l.lo_id = p.lo_id
 GROUP BY
-    year,
+    YEAR(f.dstart),
     l.lo_id
 HAVING
-    area_burnt_in_year = (
+    area_burnt_in_year >= ALL(
         SELECT
             SUM(sf2.area_burned)
         FROM
@@ -130,11 +128,8 @@ HAVING
         WHERE
             YEAR(f2.dstart) = year
         GROUP BY
+            YEAR(f2.dstart),
             l2.lo_id
-        ORDER BY
-            area_burned DESC
-        LIMIT
-            1
     );
 
 -- 8 | Name and VAT of landowners that have all the forest species in his/her property.
