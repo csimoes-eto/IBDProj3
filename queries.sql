@@ -1,11 +1,16 @@
 -- IBD (2022/2023)
 -- Project 3
+
+
 -- Group 22
 -- Carlos Simões #60895 (8 hours)
 -- Catarina Fonseca #44961 (8 hours)
 -- Márcia Vital #59488 (8 hours)
 -- Rafaela Lopes #59493 (8 hours)
+
+
 -----------------------------------------------------------------
+
 -- 1 | VAT, phone, address and name of landowners with age between 18 and 30 years and who own properties with an area greater than 2000m2.
 SELECT
     l.vat,
