@@ -1,4 +1,14 @@
---1
+-- IBD (2022/2023)
+-- Project 3
+
+-- Group 22
+-- Carlos Simões #60895 (8 hours)
+-- Catarina Fonseca #44961 (8 hours)
+-- Márcia Vital #59488 (8 hours)
+-- Rafaela Lopes #59493 (8 hours)
+-----------------------------------------------------------------
+
+-- 1 | VAT, phone, address and name of landowners with age between 18 and 30 years and who own properties with an area greater than 2000m2.
 SELECT
     l.vat,
     l.phone,
@@ -13,7 +23,7 @@ WHERE
     AND 2004
     AND p.area > 2000;
 
---2
+-- 2 | VAT and name of the landowners that had fires in 2021.
 SELECT
     DISTINCT l.vat,
     l.name
@@ -25,7 +35,7 @@ FROM
 WHERE
     YEAR(f.dstart) = 2021;
 
---3
+-- 3 | Name and VAT of the landowners that have stands with cork oak, but not eucalyptus.
 SELECT
     l.lo_id,
     l.name,
@@ -49,7 +59,7 @@ WHERE
             sp.name = "Eucalyptus"
     );
 
---4
+-- 4 | VAT and name of landowners who have never had a fire in his/her properties.
 SELECT
     DISTINCT l.vat,
     l.name
@@ -60,7 +70,7 @@ FROM
 WHERE
     sf.f_id IS NULL;
 
---5
+-- 5 | For each year and property, list the total burned area.
 SELECT
     sf.pr_id as property_id,
     YEAR(f.dstart) as year,
@@ -72,7 +82,7 @@ GROUP BY
     year,
     property_id;
 
---6
+-- 6 | Which stands border the ones that had coppice fires in 2021.
 SELECT
     b.prop_id1,
     b.st_id1,
@@ -95,7 +105,7 @@ WHERE
     f.ftype = "C"
     AND YEAR(f.dstart) = 2021;
 
---7
+-- 7 | For each year, name of the landowner most affected with the fires (most area burned).
 SELECT
     YEAR(f.dstart) as year,
     l.name,
@@ -118,7 +128,7 @@ HAVING
             INNER JOIN Property p2 ON p2.prop_id = sf2.pr_id
             INNER JOIN Landowner l2 ON l2.lo_id = p2.lo_id
         WHERE
-            year(f2.dstart) = year
+            YEAR(f2.dstart) = year
         GROUP BY
             l2.lo_id
         ORDER BY
@@ -127,7 +137,7 @@ HAVING
             1
     );
 
---8
+-- 8 | Name and VAT of landowners that have all the forest species in his/her property.
 SELECT
     l.lo_id,
     l.name,
